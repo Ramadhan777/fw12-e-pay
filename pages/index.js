@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <nav className="flex bg-[#f5f5f5] px-20 py-5 items-center">
         <div className="grow">
-          <div className="text-3xl text-[#10A19D] font-bold">e-Pay</div>
+          <div className="text-3xl text-[#10A19D] font-bold">Easy-Pay</div>
         </div>
 
         <div className="flex gap-3">
@@ -124,7 +124,7 @@ export default function Home() {
           <div className="flex flex-col gap-5">
             <div className="text-6xl font-bold w-[500px] leading-relaxed">
               All The <span className="text-[#10A19D]">Great</span> <br />
-              e-Pay Features.
+              Easy-Pay Features.
             </div>
 
             <div className="card w-100 bg-white">
@@ -193,13 +193,13 @@ export default function Home() {
 
       <footer className="
       bg-[#10A19D] px-20 py-14 text-white">
-        <div className="text-2xl font-bold mb-8">e-Pay</div>
+        <div className="text-2xl font-bold mb-8">Easy-Pay</div>
         <div className="mb-8">Simplify financial needs and saving <br/> much time in banking needs with <br/> one single app.</div>
         <hr/>
         <div className="flex mt-5 gap-10">
-          <div className="grow">2020 FazzPay. All right reserved.</div>
+          <div className="grow">2020 Easy-pay. All right reserved.</div>
           <div>+62 5637 8882 9901</div>
-          <div>contact@fazzpay.com</div>
+          <div>contact@easy-pay.com</div>
         </div>
       </footer>
     </>

@@ -5,11 +5,13 @@ import Footer from "../components/footer";
 import { useSelector } from "react-redux";
 import http from "../helpers/http";
 import WithAuth from "../components/hoc/withauth.js";
+import TransactionCard from "../components/transactionCard";
 
 const History = () => {
   const token = useSelector((state) => state.auth.token);
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(1);
+
 
   console.log(transactions);
 
@@ -39,10 +41,10 @@ const History = () => {
               {transactions.map((transaction, i) => (
                 <div key={i} className="flex gap-3 items-center">
                   <div>
-                    <img className="w-[60px]" src={transaction.recipientPicture ? `${process.env.URL_BACKEND}/upload/${transaction.recipientPicture}` : "/defaultUser.png"} />
+                    <img className="w-[60px]" src={"/defaultUser.png"} />
                   </div>
                   <div className="grow">
-                    <div className="font-bold">{`${transaction.recipientname}`}</div>
+                    <div className="font-bold">{transaction.sendername.length === 1 || transaction.sendername === "Cupu Boy" ? transaction.recipientname : transaction.sendername}</div>
                     <div>{transaction.notes}</div>
                   </div>
                   <div className={`font-bold ${transaction.senderId ? "text-[#FF5B37]" : "text-[#1EC15F]"}`}>{transaction.amount}</div>

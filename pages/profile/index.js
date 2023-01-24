@@ -31,11 +31,7 @@ const Profile = () => {
       const formData = new FormData();
       formData.append("picture", file);
       const { data } = await http(token).post("/profile", formData);
-
       setSuccessMessage("Profile picture updated");
-      setTimeout(() => {
-        router.reload("/profile");
-      }, 3000);
     } catch (error) {
       console.log(error);
     }
@@ -62,8 +58,8 @@ const Profile = () => {
               <img src={user.picture ? `${process.env.URL_BACKEND}/upload/${user.picture}` : "/defaultUser.png"} width="80" />
             </div>
             <div className="flex gap-2 items-center justify-center">
-              <HiOutlinePencil className="text-sm" />
               <label for="picture" className="hover:cursor-pointer">
+              <HiOutlinePencil className="text-sm" />
                 Edit
               </label>
               <input className="hidden" onChange={uploadPhoto} type="file" name="picture" id="picture" />

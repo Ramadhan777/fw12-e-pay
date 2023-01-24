@@ -30,6 +30,9 @@ const Amount = () => {
     if (e.target.value > user.balance) {
       e.target.value = user.balance;
     }
+    if(e.target.value < 0 ){
+      e.target.value = 0
+    }
   };
 
   const showFormattedDate = (date) => {
@@ -94,7 +97,7 @@ const Amount = () => {
                   </div>
 
                   <div className="flex justify-end">
-                    <button className="rounded-xl py-3 w-[150px] border-2 border-[#10A19D] text-white bg-[#10A19D]">Continue</button>
+                    <button disabled={contentNote ? false : true} className={`rounded-xl py-3 w-[150px] text-white ${contentNote ? 'bg-[#10A19D]' : 'bg-[#DADADA]'}`}>Continue</button>
                   </div>
                 </form>
               </div>

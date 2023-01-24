@@ -22,7 +22,7 @@ const Navbar = () => {
   return (
     <div className="navbar px-20 py-5 bg-white rounded-b-2xl shadow">
       <div className="flex-1">
-        <div className="text-3xl text-[#10A19D] font-bold">e-Pay</div>
+        <div className="text-3xl text-[#10A19D] font-bold">Easy-Pay</div>
       </div>
 
       <div className="flex gap-5 mr-8">

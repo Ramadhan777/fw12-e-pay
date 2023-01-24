@@ -5,42 +5,41 @@ import { AiOutlineMail } from "react-icons/ai";
 import { FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 import { BsPerson } from "react-icons/bs";
 import { registerAction } from "../redux/actions/auth";
-import {useDispatch} from 'react-redux'
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 
 const Register = () => {
-  const dispatch = useDispatch()
-  const router = useRouter()
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const [isPassword, setIsPassword] = useState(true);
   const [contentEmail, setContentEmail] = useState(0);
   const [contentFirstName, setContentFirstName] = useState(0);
   const [contentLastName, setContentLastName] = useState(0);
   const [contentPassword, setContentPassword] = useState(0);
-    const [errMessage, setErrMessage] = useState('')
-
+  const [errMessage, setErrMessage] = useState("");
 
   const register = async (e) => {
-    e.preventDefault()
-    const firstName = e.target.firstName.value
-    const lastName = e.target.lastName.value
-    const email = e.target.email.value
-    const password = e.target.password.value
+    e.preventDefault();
+    const firstName = e.target.firstName.value;
+    const lastName = e.target.lastName.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
 
     const cb = () => {
-      router.push('/pin')
-    }
+      router.push("/pin");
+    };
 
-    try{
-      const result = await dispatch(registerAction({firstName, lastName,email, password, cb}))
-      
-      if(result.payload.startsWith('duplicate')){
-        setErrMessage('Email already used')
+    try {
+      const result = await dispatch(registerAction({ firstName, lastName, email, password, cb }));
+
+      if (result.payload.startsWith("duplicate")) {
+        setErrMessage("Email already used");
       }
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
   return (
     <div className="flex h-screen">
       <BackgroundFormLogin />
@@ -53,17 +52,17 @@ const Register = () => {
         <form onSubmit={register} className="flex flex-col w-full lg:w-[430px] gap-7">
           <div className={`flex gap-3 items-center border-b-2 ${contentFirstName ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
             <BsPerson className={`text-xl ${contentFirstName ? "text-[#10A19D]" : null}`} />
-            <input onChange={(e) => setContentFirstName(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="firstName" id="firstName" placeholder="Enter your first name" />
+            <input onChange={(e) => setContentFirstName(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="firstName" id="firstName" placeholder="Enter your first name" required />
           </div>
 
           <div className={`flex gap-3 items-center border-b-2 ${contentLastName ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
             <BsPerson className={`text-xl ${contentLastName ? "text-[#10A19D]" : null}`} />
-            <input onChange={(e) => setContentLastName(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="lastName" id="lastName" placeholder="Enter your last name" />
+            <input onChange={(e) => setContentLastName(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="lastName" id="lastName" placeholder="Enter your last name" required/>
           </div>
 
           <div className={`flex gap-3 items-center border-b-2 ${contentEmail ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
             <AiOutlineMail className={`text-xl ${contentEmail ? "text-[#10A19D]" : null}`} />
-            <input onChange={(e) => setContentEmail(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="email" id="email" placeholder="Enter your e-mail" />
+            <input onChange={(e) => setContentEmail(e.target.value.length)} className="bg-[#f5f5f5] w-full py-2 focus:outline-none" type="text" name="email" id="email" placeholder="Enter your e-mail" required/>
           </div>
 
           <div>
@@ -76,6 +75,7 @@ const Register = () => {
                 name="password"
                 id="password"
                 placeholder="Enter your password"
+                required
               />
               {isPassword ? <FiEyeOff onClick={() => setIsPassword(false)} className="text-xl" /> : <FiEye onClick={() => setIsPassword(true)} className="text-xl" />}
             </div>
@@ -85,15 +85,25 @@ const Register = () => {
             </div>
           </div>
 
-          {errMessage ? <div className="alert alert-error shadow-lg">
-  <div>
-    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-    <span>{errMessage}</span>
-  </div>
-</div> : null}
+          {errMessage ? (
+            <div className="alert alert-error shadow-lg">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{errMessage}</span>
+              </div>
+            </div>
+          ) : null}
 
           <div>
-            <button type="submit" disabled={contentEmail && contentPassword && contentFirstName && contentLastName ? false : true} className={`w-full rounded-xl py-3 ${contentEmail && contentPassword && contentFirstName && contentLastName ? "bg-[#10A19D] text-white" : "bg-[#DADADA]"}`}>Sign Up</button>
+            <button
+              type="submit"
+              disabled={contentEmail && contentPassword && contentFirstName && contentLastName ? false : true}
+              className={`w-full rounded-xl py-3 ${contentEmail && contentPassword && contentFirstName && contentLastName ? "bg-[#10A19D] text-white" : "bg-[#DADADA]"}`}
+            >
+              Sign Up
+            </button>
           </div>
         </form>
 
