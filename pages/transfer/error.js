@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Toolbar from "../../components/toolbar";
 import Footer from "../../components/footer";
+import WithAuth from '../../components/hoc/withauth'
 
 const Error = () => {
   return (
