@@ -41,8 +41,8 @@ const Login = () => {
     <div className="flex h-screen">
       <BackgroundFormLogin />
 
-      <div className="flex flex-col flex-[100%] lg:flex-[40%] px-10 justify-center gap-5  bg-[#f5f5f5] overflow-y-auto">
-        <div className="lg:hidden text-3xl font-bold text-[#10A19D] pt-10">e-Pay</div>
+      <div className="flex flex-col flex-[100%] lg:flex-[40%] pt-10 px-10 gap-5  bg-[#f5f5f5] overflow-y-auto">
+        <div className="lg:hidden text-3xl font-bold text-[#10A19D]">e-Pay</div>
 
         <div className="text-2xl font-bold leading-relaxed max-w-[400px]">Start Accessing Banking Needs With All Devices and All Platforms With 30.000+ Users</div>
         <div className="leading-relaxed max-w-[430px]">Transfering money is eassier than ever, you can access FazzPay wherever you are. Desktop, laptop, mobile phone? we cover all of that for you!</div>
