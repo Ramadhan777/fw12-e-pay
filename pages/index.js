@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <nav className="flex bg-[#f5f5f5] px-6 md:px-12 lg:px-16 py-5 items-center">
-        <div className="dropdown mr-5 md:hidden">
+        <div className="dropdown mr-5 sm:hidden">
           <label tabIndex={0} className="mt-3 text-4xl">
             ☰
           </label>
