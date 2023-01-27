@@ -12,7 +12,6 @@ const History = () => {
   const [transactions, setTransactions] = useState([]);
   const [page, setPage] = useState(1);
 
-
   console.log(transactions);
 
   useEffect(() => {
@@ -25,12 +24,12 @@ const History = () => {
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-screen gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-screen gap-5">
         <Toolbar dashboard={true} />
         <div className="flex-[80%] rounded-xl">
           <div className="card w-full bg-base-100 shadow-xl">
             <div className="card-body flex flex-col gap-6">
-              <div className="flex">
+              <div className="flex items-center">
                 <div className="grow font-bold text-lg">Transaction History</div>
                 <div>
                   <select className="bg-[#E5E5E5] py-3 px-5 rounded-xl">

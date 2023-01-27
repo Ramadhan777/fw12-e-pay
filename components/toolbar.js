@@ -15,7 +15,7 @@ const Toolbar = ({ transactions, dashboard, profile }) => {
   const logout = () => {
     dispatch(logoutAction());
     dispatch(resetProfile());
-    router.push("/login");
+    router.replace("/login");
   };
 
   const topup = async (e) => {
@@ -35,7 +35,48 @@ const Toolbar = ({ transactions, dashboard, profile }) => {
 
   return (
     <>
-      <div className="flex-[20%] h-full">
+      <div className="flex lg:hidden">
+        <div className="card w-full bg-base-100 shadow-xl">
+          <div className="card-body px-0 grid min-[480px]:grid-cols-2 md:grid-cols-3 gap-10 ">
+            <Link href="/home" className={`flex gap-5 px-8 ${dashboard ? " text-[#10A19D] border-l-4 border-[#10A19D] px-7" : null}`}>
+              <div>
+                <img src="/grid.svg" />
+              </div>
+              <div className={dashboard ? `font-bold` : null}>Dashboard</div>
+            </Link>
+
+            <Link href="/transfer" className={`flex gap-5 px-8 ${transactions ? " text-[#10A19D] border-l-4 border-[#10A19D] px-7" : null}`}>
+              <div>
+                <img clasName="text-[#10A19D]" src="/arrow-up.svg" />
+              </div>
+              <div className={transactions ? `font-bold` : null}>Transfer</div>
+            </Link>
+
+            <label htmlFor="my-modal" className="flex gap-5 px-8 hover:cursor-pointer focus:text-[#10A19D] focus:border-l-4 focus:border-[#10A19D]">
+              <div>
+                <img src="/plus.svg" />
+              </div>
+              <div>Top Up</div>
+            </label>
+
+            <Link href="/profile" className={`flex gap-5 px-8 ${profile ? " text-[#10A19D] border-l-4 border-[#10A19D] px-7" : null}`}>
+              <div>
+                <img clasName="text-[#10A19D]" src="/user.svg" />
+              </div>
+              <div className={profile ? `font-bold` : null}>Profile</div>
+            </Link>
+
+            <button onClick={logout} className="flex items-end grow gap-5 px-8">
+              <div>
+                <img src="/log-out.svg" />
+              </div>
+              <div>Logout</div>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="hidden lg:flex lg:flex-[20%] h-full">
         <div className="card w-full bg-base-100 shadow-xl h-full">
           <div className="card-body px-0 flex flex-col gap-10 h-full">
             <Link href="/home" className={`flex gap-5 px-8 ${dashboard ? " text-[#10A19D] border-l-4 border-[#10A19D] px-7" : null}`}>

@@ -10,15 +10,16 @@ import http from "../../helpers/http";
 import WithAuth from "../../components/hoc/withauth";
 
 const Confirmation = () => {
+  const router = useRouter();
+  const recipientId = useSelector((state) => state.transfer.recipientId);
+  const token = useSelector((state) => state.auth.token);
+  const dispatch = useDispatch((state) => state.auth.token);
   const user = useSelector((state) => state.profile);
   const amount = useSelector((state) => state.transfer.amount);
   const notes = useSelector((state) => state.transfer.notes);
   const date = useSelector((state) => state.transfer.date);
-  const recipientId = useSelector((state) => state.transfer.recipientId);
-  const token = useSelector((state) => state.auth.token);
-  const dispatch = useDispatch((state) => state.auth.token);
-  const router = useRouter();
   const [successMessage, setSuccessMessage] = useState("");
+  const {recipientName, phoneNumber: recipientPhone} = router.query
 
   const [pin1, setPin1] = useState(0);
   const [pin2, setPin2] = useState(0);
@@ -107,7 +108,7 @@ const Confirmation = () => {
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16  py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar transactions={true} />
 
         <div className="flex-[80%] bg-white p-5 h-full overflow-y-auto bg-base-100 rounded-xl shadow-md">
@@ -120,8 +121,8 @@ const Confirmation = () => {
                   <img className="w-[50px]" src={"/defaultUser.png"} />
                 </div>
                 <div className="grow">
-                  <div className="font-bold">Dian</div>
-                  <div>082256964453</div>
+                  <div className="font-bold">{recipientName}</div>
+                  <div>{recipientPhone}</div>
                 </div>
               </div>
             </div>
@@ -161,7 +162,7 @@ const Confirmation = () => {
             </div>
 
             <div className="flex justify-end">
-              <label htmlFor="my-modal-1" className="text-center rounded-xl py-3 w-[150px] border-2 border-[#10A19D] text-white bg-[#10A19D] hover:cursor-pointer">
+              <label htmlFor="my-modal-1" className="text-center rounded-xl py-3 max-[400px]:w-full w-[150px] border-2 border-[#10A19D] text-white bg-[#10A19D] hover:cursor-pointer">
                 Continue
               </label>
             </div>
@@ -179,16 +180,16 @@ const Confirmation = () => {
           </label>
           <h3 className="text-lg font-bold">Enter PIN to Transfer</h3>
           <p className="py-4">Enter your 6 digits PIN for confirmation to continue transferring money.</p>
-            {successMessage ? (
-              <div className="alert alert-success shadow-lg mb-5">
-                <div>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <span>{successMessage}</span>
-                </div>
+          {successMessage ? (
+            <div className="alert alert-success shadow-lg mb-5">
+              <div>
+                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span>{successMessage}</span>
               </div>
-            ) : null}
+            </div>
+          ) : null}
           <form onSubmit={transfer} className="flex flex-col w-[430px] gap-14">
             <div className="flex gap-5 mt-5">
               <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin1 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>

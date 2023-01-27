@@ -20,12 +20,12 @@ const Navbar = () => {
   }, [token, page]);
 
   return (
-    <div className="navbar px-20 py-5 bg-white rounded-b-2xl shadow">
+    <div className="navbar px-6 md:px-12 lg:px-16 py-5 bg-white rounded-b-2xl shadow">
       <div className="flex-1">
         <div className="text-3xl text-[#10A19D] font-bold">Easy-Pay</div>
       </div>
 
-      <div className="flex gap-5 mr-8">
+      <div className="flex gap-5 mr-8 max-[500px]:hidden ">
         <div>
           <img className="w-[50px]" src={user.picture ? `${process.env.URL_BACKEND}/upload/${user.picture}` : "/defaultUser.png"} />
         </div>
@@ -51,23 +51,21 @@ const Navbar = () => {
                   </div>
                   <div>
                     <div>{notif.notes}</div>
-                    <div className={`font-bold ${notif.type === "DEBIT" ? 'text-[#FF5B37]' : 'text-[#1EC15F]'}`}>{notif.amount}</div>
+                    <div className={`font-bold ${notif.type === "DEBIT" ? "text-[#FF5B37]" : "text-[#1EC15F]"}`}>{notif.amount}</div>
                   </div>
                 </div>
               </div>
             ))}
 
-            {!notifications.length ? (
-              <div className="text-center font-bold">Empty</div>
-            ) : null }
+            {!notifications.length ? <div className="text-center font-bold">Empty</div> : null}
             <div className="flex gap-3 justify-center pb-5">
-                <button onClick={() => setPage((prev) => (prev === 1 ? prev : prev - 1))} className="w-[40px] p-1 rounded-xl bg-[#DADADA] hover:bg-[#E5E5E5]">
-                  <img src="/arrow-left.svg" />
-                </button>
-                <button onClick={() => setPage((prev) => prev + 1)} className="w-[40px] p-1 rounded-xl bg-[#DADADA] hover:bg-[#E5E5E5]">
-                  <img src="/arrow-right.svg" />
-                </button>
-              </div>
+              <button onClick={() => setPage((prev) => (prev === 1 ? prev : prev - 1))} className="w-[40px] p-1 rounded-xl bg-[#DADADA] hover:bg-[#E5E5E5]">
+                <img src="/arrow-left.svg" />
+              </button>
+              <button onClick={() => setPage((prev) => prev + 1)} className="w-[40px] p-1 rounded-xl bg-[#DADADA] hover:bg-[#E5E5E5]">
+                <img src="/arrow-right.svg" />
+              </button>
+            </div>
           </div>
         </div>
       </div>

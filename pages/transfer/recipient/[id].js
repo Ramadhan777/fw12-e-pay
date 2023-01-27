@@ -30,8 +30,8 @@ const Amount = () => {
     if (e.target.value > user.balance) {
       e.target.value = user.balance;
     }
-    if(e.target.value < 0 ){
-      e.target.value = 0
+    if (e.target.value < 0) {
+      e.target.value = 0;
     }
   };
 
@@ -49,16 +49,16 @@ const Amount = () => {
     const amount = e.target.amount.value;
     const notes = e.target.notes.value;
     const recipientId = recipient.id;
-    const date = showFormattedDate(new Date)
+    const date = showFormattedDate(new Date());
 
-    router.push('/transfer/confirmation')
+    Router.push({pathname: "/transfer/confirmation", query: { recipientName: `${recipient.firstName} ${recipient.lastName || ""}`, phoneNumber: recipient.phoneNumber}}, "/transfer/confirmation");
     dispatch(setAmountAction({ amount, notes, recipientId, date }));
   };
 
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar transactions={true} />
         <div className="flex-[80%] h-full bg-base-100 overflow-y-auto rounded-xl shadow-md">
           <div className="card w-full">
@@ -69,7 +69,7 @@ const Amount = () => {
                 <div className="card w-full bg-base-100 shadow-md">
                   <div className="card-body p-5 flex flex-row gap-3 items-center">
                     <div>
-                      <img className="w-[50px]" src={recipient.picture ? `${process.env.URL_BACKEND}/upload/${recipient.picture}` : "/defaultUser.png"}  />
+                      <img className="w-[50px]" src={recipient.picture ? `${process.env.URL_BACKEND}/upload/${recipient.picture}` : "/defaultUser.png"} />
                     </div>
                     <div className="grow">
                       <div className="font-bold">{`${recipient.firstName} ${recipient.lastName || ""}`}</div>
@@ -79,7 +79,7 @@ const Amount = () => {
                 </div>
 
                 <form onSubmit={setAmount} className="flex flex-col gap-10">
-                  <div className="w-[330px]">Type the amount you want to transfer and then press continue to the next steps.</div>
+                  <div className="w-full lg:w-[330px]">Type the amount you want to transfer and then press continue to the next steps.</div>
 
                   <div className="flex flex-col grow gap-10 items-center">
                     <div>
@@ -91,13 +91,15 @@ const Amount = () => {
                     <div className={`flex items-center gap-3 border-b-2 ${contentNote ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                       <HiOutlinePencil className={contentNote ? "text-[#10A19D]" : null} />
                       <div>
-                        <input onChange={(e) => setContentNote(e.target.value.length)} className="w-[300px] py-2 focus:outline-none" type="text" name="notes" id="notes" placeholder="Add some notes" />
+                        <input onChange={(e) => setContentNote(e.target.value.length)} className="w-full lg:w-[300px] py-2 focus:outline-none" type="text" name="notes" id="notes" placeholder="Add some notes" />
                       </div>
                     </div>
                   </div>
 
                   <div className="flex justify-end">
-                    <button disabled={contentNote ? false : true} className={`rounded-xl py-3 w-[150px] text-white ${contentNote ? 'bg-[#10A19D]' : 'bg-[#DADADA]'}`}>Continue</button>
+                    <button disabled={contentNote ? false : true} className={`rounded-xl py-3 w-[150px] text-white ${contentNote ? "bg-[#10A19D]" : "bg-[#DADADA]"}`}>
+                      Continue
+                    </button>
                   </div>
                 </form>
               </div>

@@ -22,7 +22,7 @@ const Transfer = () => {
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[700px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-[700px] gap-5">
         <Toolbar transactions={true} />
         <div className="flex-[80%]">
           <div className="card w-full bg-base-100 shadow-xl">
@@ -43,7 +43,7 @@ const Transfer = () => {
                   <Link href={`/transfer/recipient/${recipient.id}`} key={i} className="card w-full bg-base-100 shadow-xl hover:cursor-pointer">
                     <div className="card-body p-5 flex flex-row gap-3 items-center">
                       <div>
-                        <img className="w-[53px]" src={recipient.picture ? `${process.env.URL_BACKEND}/upload/${recipient.picture}` : "/defaultUser.png"} />
+                        <img className="w-[53px]" src={recipient.picture ? `https://68xkph-8888.preview.csb.app/upload/${recipient.picture}` : "/defaultUser.png"} />
                       </div>
                       <div className="grow">
                         <div className="font-bold">{`${recipient.firstName} ${recipient.lastName}`}</div>

@@ -2,13 +2,13 @@ import React from "react";
 import Navbar from "../../components/navbar";
 import Toolbar from "../../components/toolbar";
 import Footer from "../../components/footer";
-import WithAuth from '../../components/hoc/withauth'
+import WithAuth from "../../components/hoc/withauth";
 
 const Error = () => {
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16  py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar transactions={true} />
         <div className="flex-[80%] py-10 p-5 bg-white overflow-y-auto rounded-xl shadow-md">
           <div className="flex flex-col items-center gap-5 mb-5">
@@ -16,7 +16,7 @@ const Error = () => {
               <img src="/failed.svg" />
             </div>
             <div className="font-bold text-xl">Transfer Failed</div>
-            <div className="w-[600px] text-center">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</div>
+            <div className="w-full lg:w-[600px] text-center">We can’t transfer your money at the moment, we recommend you to check your internet connection and try again.</div>
           </div>
 
           <div className="flex flex-col gap-5">
@@ -67,9 +67,9 @@ const Error = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3">
-              <div>
-                <button className="text-center rounded-xl py-3 px-7 border-2 border-[#6379F4] text-white bg-[#6379F4] hover:cursor-pointer font-bold">Try Again</button>
+            <div className="flex gap-3">
+              <div className="flex grow justify-end ">
+                <button className="text-center max-[400px]:w-full rounded-xl py-3 px-7 border-2 border-[#6379F4] text-white bg-[#6379F4] hover:cursor-pointer font-bold">Try Again</button>
               </div>
             </div>
           </div>

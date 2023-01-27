@@ -5,15 +5,15 @@ import Footer from "../../components/footer";
 import { useSelector } from "react-redux";
 
 const Success = () => {
-  const amount = useSelector(state=> state.transfer.amount)
-  const notes = useSelector(state=> state.transfer.notes)
-  const date = useSelector(state => state.transfer.date)
-  const balance = useSeletor(state => state.profile.balance)
+  const amount = useSelector((state) => state.transfer.amount);
+  const notes = useSelector((state) => state.transfer.notes);
+  const date = useSelector((state) => state.transfer.date);
+  const balance = useSelector((state) => state.profile.balance);
 
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar transactions={true} />
         <div className="flex-[80%] py-10 p-5 bg-white overflow-y-auto rounded-xl shadow-md">
           <div className="flex flex-col items-center gap-5 mb-5">
@@ -71,15 +71,15 @@ const Success = () => {
               </div>
             </div>
 
-            <div className="flex justify-end gap-3">
-              <div className="flex items-center text-center rounded-xl px-7 border-2 border-[#10A19D26] text-[#10A19D] bg-[#10A19D26] hover:cursor-pointer gap-3">
+            <div className="flex max-[400px]:flex-col justify-end gap-3">
+              <div className="flex items-center text-center justify-center rounded-xl px-7 border-2 border-[#10A19D26] text-[#10A19D] bg-[#10A19D26] hover:cursor-pointer gap-3">
                 <div>
                   <img src="/download.svg" />
                 </div>
                 <button className="py-3 font-bold">Download PDF</button>
               </div>
-              <div>
-                <button className="text-center rounded-xl py-3 px-7 border-2 border-[#10A19D] text-white bg-[#10A19D] hover:cursor-pointer font-bold">Back to Home</button>
+              <div className="flex ">
+                <button className="grow text-center rounded-xl py-3 px-7 border-2 border-[#10A19D] text-white bg-[#10A19D] hover:cursor-pointer font-bold">Back to Home</button>
               </div>
             </div>
           </div>

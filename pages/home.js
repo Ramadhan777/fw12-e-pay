@@ -22,19 +22,19 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-screen gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-screen gap-5">
         <Toolbar dashboard={true} />
 
         <div className="flex-[80%] flex-col gap-3 h-full">
-          <div className="w-full flex bg-[#10A19D] p-5 text-white rounded-xl mb-5">
+          <div className="w-full flex max-[440px]:flex-col flex-row bg-[#10A19D] p-5 text-white rounded-xl mb-5 gap-5">
             <div className="flex grow flex-col gap-3">
               <div>Balance</div>
-              <div className="grow flex items-center text-4xl font-bold">Rp{user.balance}</div>
+              <div className="grow flex items-center text-4xl font-bold">Rp{Number(user.balance).toLocaleString('id-ID')}</div>
               <div>{user.phoneNumber}</div>
             </div>
             <div>
-              <div className="mb-3">
-                <Link href='/transfer' className="flex gap-3 justify-center w-[150px] py-3 rounded-xl bg-[#B5B0ED] border-2 border-white">
+              <div className="mb-3 bg-[#B5B0ED] flex max-[440px]:grow py-3 rounded-xl border-2 border-white">
+                <Link href="/transfer" className="flex gap-3 justify-center w-[150px]">
                   <div>
                     <img src="/arrow-up.svg" />
                   </div>
@@ -42,8 +42,8 @@ const Home = () => {
                 </Link>
               </div>
 
-              <div>
-                <label htmlFor="my-modal" className="flex hover:cursor-pointer gap-3 justify-center w-[150px] py-3 rounded-xl bg-[#B5B0ED] border-2 border-white">
+              <div className="mb-3 bg-[#B5B0ED] flex max-[440px]:grow py-3 rounded-xl border-2 border-white">
+                <label htmlFor="my-modal" className="flex hover:cursor-pointer gap-3 justify-center w-[150px]">
                   <div>
                     <img src="/plus.svg" />
                   </div>
@@ -53,7 +53,7 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex max-[600px]:flex-col gap-3">
             <div className="flex-[50%]">
               <div className="card w-full bg-base-100 shadow-xl">
                 <div className="card-body flex flex-col">
@@ -100,7 +100,7 @@ const Home = () => {
                         <div className="font-bold">{`${transaction.recipientname}`}</div>
                         <div>{transaction.notes}</div>
                       </div>
-                      <div className={`font-bold ${transaction.senderId ? 'text-[#FF5B37]' : 'text-[#1EC15F]'}`}>{transaction.amount}</div>
+                      <div className={`font-bold ${transaction.senderId ? "text-[#FF5B37]" : "text-[#1EC15F]"}`}>{transaction.amount}</div>
                     </div>
                   ))}
                 </div>

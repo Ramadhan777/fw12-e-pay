@@ -9,7 +9,7 @@ export const registerAction = createAsyncThunk('async/registerAction', async ({f
         return data.results.token
     } catch(err) {
         console.log(err)
-        return err.response.data.message
+        return err.response.data
     }
 })
 
@@ -21,7 +21,7 @@ export const loginAction = createAsyncThunk(
         cb();
         return data.results.token;
       } catch (error) {
-        return error.response.data.message;
+        return error.response.data
       }
     }
   );

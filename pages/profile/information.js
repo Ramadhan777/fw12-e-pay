@@ -6,14 +6,13 @@ import Link from "next/link";
 import { useSelector } from "react-redux";
 import WithAuth from "../../components/hoc/withauth";
 
-
 const Information = () => {
-  const user = useSelector(state => state.profile)
+  const user = useSelector((state) => state.profile);
 
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar profile={true} />
         <div className="flex-[80%] flex flex-col items-center gap-3 pt-5 p-8 bg-white rounded-xl shadow overflow-y-auto">
           <div className="w-full mb-5">
@@ -45,9 +44,11 @@ const Information = () => {
               <div className="card-body p-5 flex flex-row items-center">
                 <div className="grow">
                   <div>Phone Number</div>
-                  <div className="text-xl font-bold">{user.phoneNumber || '-'}</div>
+                  <div className="text-xl font-bold">{user.phoneNumber || "-"}</div>
                 </div>
-                <Link href="/profile/updatePhoneNumber" className="text-[#10A19D]">Manage</Link>
+                <Link href="/profile/updatePhoneNumber" className="text-[#10A19D]">
+                  Manage
+                </Link>
               </div>
             </div>
           </div>

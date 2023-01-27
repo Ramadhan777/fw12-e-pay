@@ -3,7 +3,7 @@ import React from "react";
 export default function BackgroundFormLogin() {
   return (
     <div
-      className="hidden lg:flex flex-[60%] flex-col bg-[#10A19D] px-20 py-10 text-white 
+      className="hidden lg:flex flex-[60%] flex-col bg-[#10A19D] px-16 py-10 text-white 
 text-white "
     >
       <div className="text-3xl font-bold">Easy-Pay</div>

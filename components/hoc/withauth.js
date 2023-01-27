@@ -11,7 +11,7 @@ const WithAuth = (Components) => {
 
     React.useEffect(() => {
       if (!token) {
-        router.replace("login");
+        router.replace("/login");
       }
     }, [token]);
     if (token) {

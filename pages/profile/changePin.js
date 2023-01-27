@@ -9,7 +9,7 @@ import WithAuth from "../../components/hoc/withauth";
 
 const ChangePin = () => {
   const token = useSelector((state) => state.auth.token);
-  const oldPin = useSelector(state => state.profile.pin)
+  const oldPin = useSelector((state) => state.profile.pin);
   const [changePin, setChangePin] = useState(false);
   const [successMessage, setSuccessMessage] = useState("Please set your new pin");
   const [errorMessage, setErrorMessage] = useState("");
@@ -88,7 +88,7 @@ const ChangePin = () => {
 
     try {
       const { data } = await http(token).post("/profile/change-pin", { newPin });
-      setSuccessMessage('Pin updated')
+      setSuccessMessage("Pin updated");
     } catch (err) {
       console.log(err);
     }
@@ -111,50 +111,50 @@ const ChangePin = () => {
     confirmPin += pin5;
     confirmPin += pin6;
 
-    if(confirmPin !== oldPin) {
-      return setErrorMessage('Pin does not match!')
+    if (confirmPin !== oldPin) {
+      return setErrorMessage("Pin does not match!");
     }
-    
-    if(confirmPin === oldPin) {
-     setTimeout(() => {
-      setChangePin(true)
-      e.target.pin1.value = null
-      e.target.pin2.value = null
-      e.target.pin3.value = null
-      e.target.pin4.value = null
-      e.target.pin5.value = null
-      e.target.pin6.value = null
-     }, 1000)
+
+    if (confirmPin === oldPin) {
+      setTimeout(() => {
+        setChangePin(true);
+        e.target.pin1.value = null;
+        e.target.pin2.value = null;
+        e.target.pin3.value = null;
+        e.target.pin4.value = null;
+        e.target.pin5.value = null;
+        e.target.pin6.value = null;
+      }, 1000);
     }
-  }
+  };
 
   return (
     <>
       <Navbar />
-      <main className="flex px-20 py-7 bg-[#f5f5f5] h-[580px] gap-5">
+      <main className="flex flex-col lg:flex-row px-6 md:px-12 lg:px-16 py-7 bg-[#f5f5f5] lg:h-[580px] gap-5">
         <Toolbar profile={true} />
         {!changePin ? (
           <div className="flex-[80%] flex flex-col items-center gap-3 pt-5 p-8 bg-white rounded-xl shadow overflow-y-auto">
             <div className="w-full mb-14">
               <div className="font-bold text-lg mb-5 ">Change PIN</div>
 
-              <div className="w-[340px] text-slate-500">Enter your current 6 digits Fazzpay PIN below to continue to the next steps.</div>
+              <div className="w-full sm:w-[340px] text-slate-500">Enter your current 6 digits Fazzpay PIN below to continue to the next steps.</div>
             </div>
 
             {errorMessage ? (
-            <div className="alert alert-error shadow-lg">
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{errorMessage}</span>
+              <div className="alert alert-error shadow-lg">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{errorMessage}</span>
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
 
-            <form onSubmit={confirmOldPin} className="flex flex-col gap-10 w-6/12">
-              <div className="flex gap-6 mt-5">
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin1 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+            <form onSubmit={confirmOldPin} className="flex flex-col gap-10 w-full sm:w-10/12 md:w-8/12 lg:w-6/12 ">
+              <div className="flex gap-6 mt-5 overflow-x-auto">
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin1 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin1(e.target.value.length);
@@ -168,7 +168,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin2 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin2 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin2(e.target.value.length);
@@ -182,7 +182,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin3 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin3 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin3(e.target.value.length);
@@ -196,7 +196,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin4 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin4 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin4(e.target.value.length);
@@ -210,7 +210,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin5 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin5 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin5(e.target.value.length);
@@ -224,7 +224,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin6 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin6 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin6(e.target.value.length);
@@ -247,7 +247,7 @@ const ChangePin = () => {
             </form>
           </div>
         ) : (
-          <div className="flex-[80%] flex flex-col items-center gap-3 pt-5 p-8 bg-white rounded-xl shadow overflow-y-auto">
+          <div className="flex-[80%] flex flex-col items-center gap-3 pt-5 p-8 bg-white rounded-xl min-w-[50px] shadow overflow-y-auto">
             <div className="w-full mb-14">
               <div className="font-bold text-lg mb-5 ">Change PIN</div>
 
@@ -255,19 +255,19 @@ const ChangePin = () => {
             </div>
 
             {successMessage ? (
-            <div className="alert alert-success shadow-lg">
-              <div>
-                <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{successMessage}</span>
+              <div className="alert alert-success shadow-lg">
+                <div>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current flex-shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span>{successMessage}</span>
+                </div>
               </div>
-            </div>
-          ) : null}
+            ) : null}
 
             <form onSubmit={updatePin} className="flex flex-col gap-10 w-6/12">
-              <div className="flex gap-6 mt-5">
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin1 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+              <div className="flex gap-6 mt-5 overflow-x-auto">
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin1 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin1(e.target.value.length);
@@ -281,7 +281,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin2 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin2 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin2(e.target.value.length);
@@ -295,7 +295,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin3 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin3 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin3(e.target.value.length);
@@ -309,7 +309,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin4 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin4 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin4(e.target.value.length);
@@ -323,7 +323,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin5 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin5 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin5(e.target.value.length);
@@ -337,7 +337,7 @@ const ChangePin = () => {
                     maxLength="1"
                   />
                 </div>
-                <div className={`bg-white rounded-xl text-center px-1 py-2 border-[1px] ${pin6 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
+                <div className={`bg-white rounded-xl min-w-[50px] text-center px-1 py-2 border-[1px] ${pin6 ? "border-[#10A19D]" : "border-[#A9A9A9]"}`}>
                   <input
                     onChange={(e) => {
                       setPin6(e.target.value.length);
